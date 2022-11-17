@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  annotations:
+  name: system
+  namespace: argocd
+status: {}
+spec:
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  destinations:
+    - namespace: 'monitoring'
+      name: '*'
+    - namespace: 'ingress-controller'
+      name: '*'
+    - namespace: 'cert-manager'
+      name: '*'
+  sourceRepos:
+    - '*'
