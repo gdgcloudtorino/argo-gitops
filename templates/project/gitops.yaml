@@ -9,6 +9,7 @@ spec:
       kind: '*'
   destinations:
     - namespace: 'argocd'
-      server: 'in-cluster'
+      server: '*'
+      name: 'in-cluster'
   sourceRepos:
-    - '*'
+    - {{ .Values.repoURL }}

@@ -1,10 +1,14 @@
+targetRevision: main
 features:
   letsencrypt: true
   cert-manager: true
-  ingress-nginx: true
+  ingress:
+    nginx: true
   prometheus: true
 
-argocd:
+argo-cd:
+  crds:
+    install: false
   redis-ha:
     enabled: true
 
@@ -40,7 +44,7 @@ argocd:
       policy.csv: |
         g, ArgoCDAdmins, role:admin
     autoscaling:
-      enabled: true
+      enabled: false
       minReplicas: 2
 
   repoServer:
@@ -49,7 +53,7 @@ argocd:
         cpu: 100m
         memory: 128Mi    
     autoscaling:
-      enabled: true
+      enabled: false
       minReplicas: 2
 
   applicationSet:

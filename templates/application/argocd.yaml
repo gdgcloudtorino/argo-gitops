@@ -3,18 +3,22 @@ kind: Application
 metadata:
   name: gitops
   namespace: argocd
-  labels:
-
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: gitops
   destination:
     name: 'in-cluster'
     namespace: 'argocd'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   source:
-    repoURL: 'https://github.com/gdgcloudtorino/argo-gitops.git'
+    repoURL: {{ .Values.repoURL }}
     path: .
-    targetRevision: HEAD
+    targetRevision: {{ .Values.targetRevision }}
     helm:
-      releaseName: argocd
+      releaseName: argo
       valueFiles:
       - values/values-gitops.yaml

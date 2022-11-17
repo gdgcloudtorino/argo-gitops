@@ -21,9 +21,9 @@ version: 0.0.1
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "3.35.4"
+appVersion: "2.5.0"
 
 dependencies:
-- name: argocd
-  version: 3.35.4
+- name: argo-cd
+  version: 5.8.3
   repository: https://argoproj.github.io/argo-helm

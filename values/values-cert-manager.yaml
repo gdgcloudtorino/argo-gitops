@@ -13,3 +13,5 @@ webhook:
 
 cainjector:
   enabled: false
+
+installCRDs: false

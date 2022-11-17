@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: private-gitops
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repo-creds
+stringData:
+  type: git
+  url: {{ .Values.repoURL }}
+  password: {{ .Values.repo.password }}
+  username: {{ .Values.repo.username }}

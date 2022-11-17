@@ -1,20 +1,7 @@
-argocd:
-  server:
-    ingress:
-      annotations:
-        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-        cert-manager.io/cluster-issuer: letsencrypt-issuer
-#        nginx.ingress.kubernetes.io/whitelist-source-range: MY_IP/32
-      enabled: true
-      https: true
-      ingressClassName: nginx
-      hosts:
-        - argocd.gdgcloudtorino.it
-      path:
-        - /
-      tls:
-        - secretName: argocd.tls
-          hosts:
-            - argocd.gdgcloudtorino.it
+# Remove comments and insert values
+#ingressIP: <CHANGE_ME>
+#repoURL: <CHANGE_ME>
+#targetRevision: main
+#repo:
+#  username: <CHANGE_ME>
+#  password: <CHANGE_ME>

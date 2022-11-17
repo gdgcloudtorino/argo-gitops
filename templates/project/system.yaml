@@ -7,12 +7,17 @@ spec:
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
+  namespaceResourceBlacklist:
+    - group: argoproj.io
+      kind: '*'
   destinations:
     - namespace: 'monitoring'
       name: '*'
     - namespace: 'ingress-controller'
       name: '*'
     - namespace: 'cert-manager'
+      name: '*'
+    - namespace: 'kube-system'
       name: '*'
   sourceRepos:
     - '*'

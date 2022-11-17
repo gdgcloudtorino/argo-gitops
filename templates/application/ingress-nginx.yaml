@@ -1,4 +1,4 @@
-{{- if .Values.features.ingress-nginx }}
+{{- if .Values.features.ingress.nginx }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -11,6 +11,10 @@ spec:
   destination:
     name: 'in-cluster'
     namespace: 'ingress-controller'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
   source:
     path: ''
     repoURL: 'https://kubernetes.github.io/ingress-nginx'
@@ -18,8 +22,9 @@ spec:
     chart: ingress-nginx
     helm:
       releaseName: nginx
-      valueFiles:
-      - values/values-nginx.yaml
+      values: |-
+{{ .Files.Get "values/values-nginx.yaml" | indent 8}}
+
       parameters:
         - name: controller.service.loadBalancerIP
           value: {{ .Values.ingressIP }}
