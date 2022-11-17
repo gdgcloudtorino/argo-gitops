@@ -1,0 +1,60 @@
+features:
+  letsencrypt: true
+  cert-manager: true
+  ingress-nginx: true
+  prometheus: true
+
+argocd:
+  redis-ha:
+    enabled: true
+
+  redis:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  controller:
+    resources:
+      requests:
+        cpu: 500m
+        memory: 768Mi
+    replicas: 1
+
+  server:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    ingress:
+      annotations:
+        nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
+        nginx.ingress.kubernetes.io/whitelist-source-range: MY_IP/32
+      enabled: true
+      https: true
+      ingressClassName: nginx
+    rbacConfig:
+      policy.csv: |
+        g, ArgoCDAdmins, role:admin
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+
+  repoServer:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi    
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+
+  applicationSet:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi 
+    replicas: 2

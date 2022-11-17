@@ -1,0 +1,13 @@
+controller:
+  replicaCount: 1
+  ingressClass: nginx
+  setAsDefaultIngress: true
+  service:
+    externalTrafficPolicy: Local
+#    loadBalancerIP: "YOUR.IP.ADDRESS.HERE"
+# REMOVE COMMENTS FOR USING AN INTERNAL LOAD BALANCER ON GCP
+#  annotations:
+#    networking.gke.io/load-balancer-type: "Internal"
+
+prometheus:
+  create: true

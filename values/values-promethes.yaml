@@ -1,0 +1,8 @@
+grafana:
+  adminPassword: prom-operator
+  adminUser: admin
+  defaultDashboardsTimezone: cet
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops
+  namespace: argocd
+  labels:
+
+spec:
+  project: gitops
+  destination:
+    name: 'in-cluster'
+    namespace: 'argocd'
+  source:
+    repoURL: 'https://github.com/gdgcloudtorino/argo-gitops.git'
+    path: .
+    targetRevision: HEAD
+    helm:
+      releaseName: argocd
+      valueFiles:
+      - values/values-gitops.yaml

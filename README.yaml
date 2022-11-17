@@ -1,0 +1,2 @@
+kubectl create ns argocd
+helm upgrade argocd -n argocd --install --create-namespace
